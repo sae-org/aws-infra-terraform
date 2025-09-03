@@ -15,7 +15,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: deploy/nginx
+        working-directory: deploy
 
     steps:
     # Checkout the repository to the GitHub Actions runner
