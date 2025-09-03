@@ -42,7 +42,11 @@ jobs:
 
     - name: Terraform Plan
       id: plan
+      env:
+        TF_VAR_public_key: ${{ secrets.EC2_PUBLIC_KEY }}
       run: terraform plan
 
     - name: Terraform Apply
+      env:
+        TF_VAR_public_key: ${{ secrets.EC2_PUBLIC_KEY }}
       run: terraform apply -auto-approve

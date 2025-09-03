@@ -55,3 +55,7 @@ variable "max_size" {
 variable "desired_capacity" {
   type = number
 }
+
+variable "pub_key" {
+  sensitive = true
+}
