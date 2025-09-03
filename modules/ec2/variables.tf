@@ -56,6 +56,6 @@ variable "desired_capacity" {
   type = number
 }
 
-variable "pub_key" {
+variable "public_key" {
   sensitive = true
 }

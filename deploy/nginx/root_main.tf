@@ -123,6 +123,7 @@ module "ec2" {
   pub_ip           = true
   subnet_id        = module.vpc.pub_sub_id[0]
   ec2_name         = "my-dev-ec2"
+  public_key       = var.public_key
   min_size         = 1
   desired_capacity = 1
   max_size         = 2
