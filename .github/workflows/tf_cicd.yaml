@@ -15,7 +15,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: deploy
+        working-directory: deploy/nginx
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -40,7 +40,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       id: plan
-      run: terraform plan -input=false
+      run: terraform plan 
 
     - name: Terraform Apply
       run: terraform apply -auto-approve 
