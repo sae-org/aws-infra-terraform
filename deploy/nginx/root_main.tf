@@ -121,7 +121,7 @@ module "ec2" {
   ami              = "ami-020cba7c55df1f615"
   iam_ins_profile  = module.iam.ssm_profile
   pub_ip           = true
-  subnet_ids        = module.vpc.pub_sub_id
+  subnet_ids       = module.vpc.pub_sub_id
   ec2_name         = "my-dev-ec2"
   public_key       = var.public_key
   min_size         = 1
