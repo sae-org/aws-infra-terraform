@@ -37,7 +37,7 @@ module "iam" {
       }
     ]
   })
-  ssm_profile_name = "SSMInstanceProfileDev1"
+  ssm_profile_name = "SSMInstanceProfileDevNew"
   ec2_policy_name  = "ec2_policy"
   ec2_policy = jsonencode({
     Version = "2012-10-17"
@@ -160,12 +160,12 @@ module "ecr" {
   ecr_name = "my-dev-ecr-repo-1"
 }
 
-module "github" {
-  source          = "../../modules/github"
-  git_name        = "CI-CD-Terraform-Dev-Repo"
-  git_description = "My ci/cd pipeline for terraform"
-  github_token    = "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"
-}
+# module "github" {
+#   source          = "../../modules/github"
+#   git_name        = "CI-CD-Terraform-Dev-Repo-new"
+#   git_description = "My ci/cd pipeline for terraform"
+#   github_token    = "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"
+# }
 
 
 # output "debug_cert_arn_keys" {
