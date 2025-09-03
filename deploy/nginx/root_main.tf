@@ -157,7 +157,7 @@ module "vpc" {
 
 module "ecr" {
   source   = "../../modules/ecr"
-  ecr_name = "my-dev-ecr-repo"
+  ecr_name = "my-dev-ecr-repo-1"
 }
 
 module "github" {
