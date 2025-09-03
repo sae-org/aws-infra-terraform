@@ -5,7 +5,11 @@ variable "name" {
 
 variable "vpc_id" {}
 
-variable "ec2_id" {}
+variable "ec2_id" {
+  type      = string
+  default   = null
+  nullable  = true
+}
 
 variable "internal" {
   type    = bool

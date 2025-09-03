@@ -127,13 +127,12 @@ module "ec2" {
   min_size         = 1
   desired_capacity = 1
   max_size         = 2
-  tg_arns          = module.lb.tg_arn_80
+  tg_arns          = module.lb.tg_arns
 }
 
 module "lb" {
   source          = "../../modules/lb"
   security_groups = [module.ec2.sg_alb_id]
-  ec2_id          = module.ec2.instance_ids[0]
   vpc_id          = module.vpc.vpc_id
   name            = "my-dev-alb"
   internal        = false

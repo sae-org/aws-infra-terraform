@@ -10,6 +10,6 @@ output "lb_zone" {
   value = aws_lb.alb.zone_id
 }
 
-output "tg_arn_80" {
-  value = aws_lb_target_group.tg["80"].arn
+output "tg_arns" {
+  value = [for k, tg in aws_lb_target_group.tg : tg.arn]
 }
