@@ -3,7 +3,7 @@ resource "aws_autoscaling_group" "web_asg" {
   min_size            = var.min_size
   desired_capacity    = var.desired_capacity
   max_size            = var.max_size
-  vpc_zone_identifier = [var.subnet_id] # or use var.subnet_ids (list) across AZs
+  vpc_zone_identifier = var.subnet_ids # or use var.subnet_ids (list) across AZs
 
   # If you attach to an ALB/NLB, pass its TGs here:
   target_group_arns         = var.tg_arns

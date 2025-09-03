@@ -14,7 +14,9 @@ variable "pub_ip" {
   default = null
 }
 
-variable "subnet_id" {}
+variable "subnet_ids" {
+  type = list(string)
+}
 
 variable "root_block_device" {
   type = list(object({
