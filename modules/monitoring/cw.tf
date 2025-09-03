@@ -14,6 +14,6 @@ resource "aws_cloudwatch_metric_alarm" "asg_cpu_high" {
   metric_name = "CPUUtilization"
   statistic   = "Average"
   dimensions = {
-    AutoScalingGroupName = module.ec2.asg_name
+    AutoScalingGroupName = var.asg_name
   }
 }
