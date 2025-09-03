@@ -134,7 +134,7 @@ module "lb" {
   source          = "../../modules/lb"
   security_groups = [module.ec2.sg_alb_id]
   vpc_id          = module.vpc.vpc_id
-  name            = "my-dev-alb"
+  name            = "my-dev-alb-1"
   internal        = false
   lb_type         = "application"
   subnets         = module.vpc.pub_sub_id
