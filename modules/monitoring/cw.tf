@@ -10,19 +10,10 @@ resource "aws_cloudwatch_metric_alarm" "asg_cpu_high" {
   alarm_actions       = [aws_sns_topic.alerts.arn]
   ok_actions          = [aws_sns_topic.alerts.arn]
 
-  # Metric math: average CPUUtilization across all EC2 instances in this ASG
-  # Every 60s period, take the Average of all instance CPU metrics found by SEARCH
-  metric_query {
-      id          = "m1"
-      return_data = true
-      metric {
-        namespace   = "AWS/EC2"
-        metric_name = "CPUUtilization"
-        stat        = "Average"
-        period      = 60
-        dimensions = {
-          AutoScalingGroupName = var.asg_name
-        }
-      }
-    }
+  namespace   = "AWS/EC2"
+  metric_name = "CPUUtilization"
+  statistic   = "Average"
+  dimensions = {
+    AutoScalingGroupName = module.ec2.asg_name
+  }
 }
