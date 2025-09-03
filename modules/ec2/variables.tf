@@ -41,3 +41,17 @@ variable "number" {
   type = number 
   default = 1
 }
+
+variable "tg_arns" {}
+
+variable "min_size" {
+  type = number 
+}
+
+variable "max_size" {
+  type = number 
+}
+
+variable "desired_capacity" {
+  type = number 
+}

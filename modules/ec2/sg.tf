@@ -1,5 +1,5 @@
 module "sg_ec2" {
-  source = "/Users/saeeda/devops/CI-CD-Terraform-Dev-Repo/nginx/modules/security_groups"
+  source = "../security_groups"
   vpc_id = var.vpc_id
   name = "ec2-sg-2"
 
@@ -36,7 +36,7 @@ module "sg_ec2" {
 }
 
 module "sg_alb" {
-  source = "/Users/saeeda/devops/CI-CD-Terraform-Dev-Repo/nginx/modules/security_groups"
+  source = "../security_groups"
   vpc_id = var.vpc_id
   name = "alb-sg-2"
 

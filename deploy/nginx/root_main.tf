@@ -3,7 +3,7 @@ terraform {
   backend "s3" {
 
     bucket = "dev-sae-tf-backend"
-    key = "terraform/backend/terraform.tfstate"
+    key = "terraform/nginx/terraform.tfstate"
     region = "us-east-1"
     use_lockfile = true
     profile = "dev"
@@ -21,12 +21,8 @@ provider "aws" {
   profile = "dev"
 }
 
-module "backend" {
-  source = "../modules/backend"
-  
-}
 module "iam" {
-  source = "../modules/iam"
+  source = "../../modules/iam"
   iam_role_name = "ec2-role"
   role_policy = jsonencode({
     Version = "2012-10-17"
@@ -65,13 +61,13 @@ module "iam" {
 }
 
 module "acm" {
-  source = "../modules/acm"
+  source = "../../modules/acm"
   acm_domains = ["dev.saeeda.me", "moh.saeeda.me", "tee.saeeda.me"]
 }
 
 
 module "r53" {
-  source = "../modules/r53"
+  source = "../../modules/r53"
   domain_name = "saeeda.me"
   create_domain = true
   r53_domains = merge(
@@ -119,7 +115,7 @@ module "r53" {
 
 
 module "ec2" {
-  source = "../modules/ec2"
+  source = "../../modules/ec2"
   vpc_id = module.vpc.vpc_id
   ins_type = "t2.micro"
   ami = "ami-020cba7c55df1f615"
@@ -127,10 +123,14 @@ module "ec2" {
   pub_ip = true
   subnet_id = module.vpc.pub_sub_id[0]
   ec2_name = "my-dev-ec2"
+  min_size = 1
+  desired_capacity = 1 
+  max_size = 2
+  tg_arns = module.lb.tg_arn_80
 }
 
 module "lb" {
-  source = "../modules/lb"
+  source = "../../modules/lb"
   security_groups = [module.ec2.sg_alb_id]
   ec2_id = module.ec2.instance_ids[0]
   vpc_id = module.vpc.vpc_id
@@ -149,19 +149,19 @@ module "lb" {
 
 
 module "vpc" {
-  source = "../modules/vpc"
+  source = "../../modules/vpc"
   cidr_block = "10.0.0.0/16"
   name = "my-dev-vpc"
   vpc_az = ["us-east-1a", "us-east-1b"]
 }
 
 module "ecr" {
-  source = "../modules/ecr"
+  source = "../../modules/ecr"
   ecr_name = "my-dev-ecr-repo"
 }
 
 module "github" {
-  source = "../modules/github"
+  source = "../../modules/github"
   git_name = "CI-CD-Terraform-Dev-Repo"
   git_description = "My ci/cd pipeline for terraform"
   github_token = "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"
