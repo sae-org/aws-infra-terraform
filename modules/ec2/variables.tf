@@ -27,7 +27,7 @@ variable "root_block_device" {
 
 variable "user_data" {
   type    = string
-  default = null
+  default = ""
 }
 
 variable "user_data_replace" {

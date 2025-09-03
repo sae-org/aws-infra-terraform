@@ -62,7 +62,7 @@ resource "aws_launch_template" "web_lt" {
   }
 
   # Launch Templates expect base64 user_data
-  user_data = base64encode(var.user_data)
+  user_data = var.user_data != "" ? base64encode(var.user_data) : null
 
   # Make $Latest the default so ASG picks up changes
   update_default_version = true
