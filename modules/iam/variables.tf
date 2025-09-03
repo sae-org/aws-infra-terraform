@@ -9,3 +9,5 @@ variable "ec2_policy_name" {}
 variable "ec2_policy" {}
 
 variable "ssm_policy_arn" {}
+
+variable "cw_policy_arn" {}
