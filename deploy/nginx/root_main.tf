@@ -56,7 +56,7 @@ module "iam" {
     ]
   })
   ssm_policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-  cw_policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+  cw_policy_arn  = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 
 }
 
@@ -161,12 +161,12 @@ module "ecr" {
 }
 
 module "monitoring" {
-  source   = "../../modules/monitoring"
-  sns_name = "asg-cpu-alerts"
+  source       = "../../modules/monitoring"
+  sns_name     = "asg-cpu-alerts"
   display_name = "ASG CPU Alerts"
-  alert_email = "saeeda.devops@gmail.com"
-  asg_name = module.ec2.asg_name
-  
+  alert_email  = "saeeda.devops@gmail.com"
+  asg_name     = module.ec2.asg_name
+
 }
 
 # module "github" {
