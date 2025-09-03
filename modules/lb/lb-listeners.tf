@@ -14,31 +14,31 @@ resource "aws_lb_listener" "alb_listeners" {
       type = default_action.value.port == 80 ? "redirect" : "forward"
 
       dynamic "redirect" {
-        for_each = default_action.value.port == 80 ? [1] : [ ]
+        for_each = default_action.value.port == 80 ? [1] : []
         content {
-          port = "443"
-          protocol = "HTTPS"
+          port        = "443"
+          protocol    = "HTTPS"
           status_code = var.http_status_code
         }
       }
 
       dynamic "forward" {
-        for_each = default_action.value.port != 80 ? [1] : [ ]
+        for_each = default_action.value.port != 80 ? [1] : []
         content {
           target_group {
-          arn = aws_lb_target_group.tg["80"].arn
+            arn = aws_lb_target_group.tg["80"].arn
           }
         }
       }
 
     }
   }
-}  
+}
 
 
 # add additional listener acm certs for other domains
-resource "aws_lb_listener_certificate" "additional_certs" { 
-  for_each = toset(var.extra_certs)
+resource "aws_lb_listener_certificate" "additional_certs" {
+  for_each        = toset(var.extra_certs)
   listener_arn    = aws_lb_listener.alb_listeners["443"].arn
   certificate_arn = var.cert_arn[each.value]
 }

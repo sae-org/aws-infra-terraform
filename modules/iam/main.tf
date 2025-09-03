@@ -5,7 +5,7 @@ resource "aws_iam_role" "iam_role" {
   assume_role_policy = var.role_policy
 
   tags = {
-    Name      = var.iam_role_name
+    Name = var.iam_role_name
   }
 }
 

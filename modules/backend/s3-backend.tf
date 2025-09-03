@@ -3,7 +3,7 @@ resource "aws_s3_bucket" "s3" {
   bucket = "dev-sae-tf-backend"
 
   tags = {
-    Name        = "dev-sae-tf-backend"
+    Name = "dev-sae-tf-backend"
   }
 }
 
@@ -42,26 +42,26 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "s3_sse" {
 resource "aws_s3_bucket_policy" "s3_policy" {
   bucket = aws_s3_bucket.s3.id
   policy = jsonencode(
-  {
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Sid": "Statement2",
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": [
-            "arn:aws:iam::886687538523:user/Saeeda",
-            "arn:aws:iam::886687538523:user/terraform"
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Sid" : "Statement2",
+          "Effect" : "Allow",
+          "Principal" : {
+            "AWS" : [
+              "arn:aws:iam::886687538523:user/Saeeda",
+              "arn:aws:iam::886687538523:user/terraform"
+            ]
+          },
+          "Action" : "s3:*",
+          "Resource" : [
+            "arn:aws:s3:::dev-sae-tf-backend",
+            "arn:aws:s3:::dev-sae-tf-backend/*"
           ]
-        },
-        "Action": "s3:*",
-        "Resource": [
-          "arn:aws:s3:::dev-sae-tf-backend",
-          "arn:aws:s3:::dev-sae-tf-backend/*"
-        ]
-      }
-    ]
-  }
+        }
+      ]
+    }
   )
 }
 

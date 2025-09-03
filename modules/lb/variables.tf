@@ -1,5 +1,5 @@
 variable "name" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -8,39 +8,39 @@ variable "vpc_id" {}
 variable "ec2_id" {}
 
 variable "internal" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "lb_type" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "security_groups" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "subnets" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "depend_on" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "enable_deletion_protection" {
-  type = bool
+  type    = bool
   default = false
 }
 
 
 variable "ports" {
   type = list(object({
-    port = number
+    port     = number
     protocol = string
   }))
   default = [
@@ -56,11 +56,11 @@ variable "primary_cert_domain" {
 }
 
 variable "http_status_code" {
-  type = string
+  type    = string
   default = "HTTP_301"
 }
 
 variable "extra_certs" {
-  type = list(string)
-  default = [ ]
+  type    = list(string)
+  default = []
 }

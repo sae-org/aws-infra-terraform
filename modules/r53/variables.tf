@@ -1,10 +1,10 @@
 variable "domain_name" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "r53_domains" {
-  type = any
+  type    = any
   default = []
 }
 

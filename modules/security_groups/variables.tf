@@ -1,9 +1,9 @@
 variable "ingress_rules" {
   type = list(object({
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = optional(list(string), [])
+    from_port       = number
+    to_port         = number
+    protocol        = string
+    cidr_blocks     = optional(list(string), [])
     security_groups = optional(list(string), [])
   }))
   default = []
@@ -11,18 +11,18 @@ variable "ingress_rules" {
 
 variable "egress_rules" {
   type = list(object({
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = optional(list(string), [])
+    from_port       = number
+    to_port         = number
+    protocol        = string
+    cidr_blocks     = optional(list(string), [])
     security_groups = optional(list(string), [])
   }))
-  default = [ {
+  default = [{
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-  } ]
+  }]
 }
 
 variable "vpc_id" {
@@ -30,7 +30,7 @@ variable "vpc_id" {
 }
 
 variable "name" {
-  type = string
+  type    = string
   default = " "
 }
 

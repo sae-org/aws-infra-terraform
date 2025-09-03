@@ -3,6 +3,6 @@ variable "acm_domains" {
 }
 
 variable "validation_method" {
-  type = string
+  type    = string
   default = "DNS"
 }

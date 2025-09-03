@@ -8,7 +8,7 @@ resource "aws_route_table" "pub_rt" {
   }
 
   tags = {
-    Name      = "${var.name}-pub_rt1"
+    Name = "${var.name}-pub_rt1"
   }
 }
 
@@ -22,6 +22,6 @@ resource "aws_route_table" "pri_rt" {
   }
 
   tags = {
-    Name      = "${var.name}-pri_rt1"
+    Name = "${var.name}-pri_rt1"
   }
 }

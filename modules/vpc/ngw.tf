@@ -10,7 +10,7 @@ resource "aws_nat_gateway" "ngw" {
   subnet_id     = values(aws_subnet.pub_sub)[0].id # pick first public subnet # will deploy in only one public subnet not both 
 
   tags = {
-    Name      = "${var.name}-ngw"
+    Name = "${var.name}-ngw"
   }
 
   # To ensure proper ordering, it is recommended to add an explicit dependency

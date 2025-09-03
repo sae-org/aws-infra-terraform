@@ -10,7 +10,7 @@ variable "iam_ins_profile" {
 }
 
 variable "pub_ip" {
-  type = bool
+  type    = bool
   default = null
 }
 
@@ -20,38 +20,38 @@ variable "root_block_device" {
   type = list(object({
     volume_size = number
     volume_type = string
-    encrypted = bool 
+    encrypted   = bool
   }))
   default = []
 }
 
 variable "user_data" {
-  type = string
+  type    = string
   default = null
 }
 
 variable "user_data_replace" {
-  type = bool
+  type    = bool
   default = null
 }
 
 variable "ec2_name" {}
 
 variable "number" {
-  type = number 
+  type    = number
   default = 1
 }
 
 variable "tg_arns" {}
 
 variable "min_size" {
-  type = number 
+  type = number
 }
 
 variable "max_size" {
-  type = number 
+  type = number
 }
 
 variable "desired_capacity" {
-  type = number 
+  type = number
 }

@@ -2,9 +2,9 @@
 terraform {
   backend "s3" {
 
-    bucket = "dev-sae-tf-backend"
-    key = "terraform/backend/terraform.tfstate"
-    region = "us-east-1"
+    bucket       = "dev-sae-tf-backend"
+    key          = "terraform/backend/terraform.tfstate"
+    region       = "us-east-1"
     use_lockfile = true
     # profile = "dev"
   }

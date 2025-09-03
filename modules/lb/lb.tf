@@ -10,7 +10,7 @@ resource "aws_lb" "alb" {
   enable_deletion_protection = var.enable_deletion_protection
 
   tags = {
-    Name      = var.name
+    Name = var.name
   }
 }
 
