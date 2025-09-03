@@ -18,7 +18,7 @@ terraform {
 # configuring aws provider 
 provider "aws" {
   region = "us-east-1"
-  # profile = "dev"
+  profile = "dev"
 }
 
 module "backend" {
