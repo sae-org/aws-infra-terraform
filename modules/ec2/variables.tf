@@ -46,19 +46,19 @@ variable "number" {
   default = 1
 }
 
-variable "tg_arns" {}
+# variable "tg_arns" {}
 
-variable "min_size" {
-  type = number
-}
+# variable "min_size" {
+#   type = number
+# }
 
-variable "max_size" {
-  type = number
-}
+# variable "max_size" {
+#   type = number
+# }
 
-variable "desired_capacity" {
-  type = number
-}
+# variable "desired_capacity" {
+#   type = number
+# }
 
 variable "public_key" {
   sensitive = true
