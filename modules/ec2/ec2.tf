@@ -2,7 +2,7 @@
 
 
 resource "aws_instance" "webserver" {
-  count = var.number
+  count                       = var.number
   instance_type               = var.ins_type
   ami                         = var.ami
   key_name                    = aws_key_pair.newkey.key_name
@@ -24,7 +24,7 @@ resource "aws_instance" "webserver" {
   user_data_replace_on_change = var.user_data_replace
 
   tags = {
-    Name      = var.ec2_name
+    Name = var.ec2_name
   }
 }
 

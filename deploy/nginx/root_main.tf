@@ -115,18 +115,15 @@ module "r53" {
 
 
 module "ec2" {
-  source           = "../../modules/ec2"
-  vpc_id           = module.vpc.vpc_id
-  ins_type         = "t2.micro"
-  ami              = "ami-020cba7c55df1f615"
-  iam_ins_profile  = module.iam.ssm_profile
-  pub_ip           = true
+  source          = "../../modules/ec2"
+  vpc_id          = module.vpc.vpc_id
+  ins_type        = "t2.micro"
+  ami             = "ami-020cba7c55df1f615"
+  iam_ins_profile = module.iam.ssm_profile
+  pub_ip          = true
   subnet_id       = module.vpc.pub_sub_id[0]
-  ec2_name         = "my-dev-ec2"
-  public_key       = var.public_key
-  # min_size         = 1
-  # desired_capacity = 1
-  # max_size         = 2
+  ec2_name        = "my-dev-ec2"
+  public_key      = var.public_key
   # tg_arns          = module.lb.tg_arns
 }
 
