@@ -1,33 +1,33 @@
-# output "instance_ids" {
-#   value = aws_instance.webserver[*].id
-# }
-
-# output "instance_arn" {
-#   value = aws_instance.webserver[*].arn
-# }
-
-# output "sg_alb_id" {
-#   value = module.sg_alb.sg_id
-
-# }
-
-output "asg_name" {
-  value = aws_autoscaling_group.web_asg.name
+output "instance_ids" {
+  value = aws_instance.webserver[*].id
 }
 
-output "asg_arn" {
-  value = aws_autoscaling_group.web_asg.arn
+output "instance_arn" {
+  value = aws_instance.webserver[*].arn
 }
 
-output "launch_template_id" {
-  value = aws_launch_template.web_lt.id
-}
-
-output "launch_template_latest_version" {
-  value = aws_launch_template.web_lt.latest_version
-}
-
-# keep this as-is if your module exports it
 output "sg_alb_id" {
   value = module.sg_alb.sg_id
+
 }
+
+# output "asg_name" {
+#   value = aws_autoscaling_group.web_asg.name
+# }
+
+# output "asg_arn" {
+#   value = aws_autoscaling_group.web_asg.arn
+# }
+
+# output "launch_template_id" {
+#   value = aws_launch_template.web_lt.id
+# }
+
+# output "launch_template_latest_version" {
+#   value = aws_launch_template.web_lt.latest_version
+# }
+
+# # keep this as-is if your module exports it
+# output "sg_alb_id" {
+#   value = module.sg_alb.sg_id
+# }
