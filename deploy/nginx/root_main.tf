@@ -121,13 +121,13 @@ module "ec2" {
   ami              = "ami-020cba7c55df1f615"
   iam_ins_profile  = module.iam.ssm_profile
   pub_ip           = true
-  subnet_ids       = module.vpc.pub_sub_id
+  subnet_id       = module.vpc.pub_sub_id[0]
   ec2_name         = "my-dev-ec2"
   public_key       = var.public_key
-  min_size         = 1
-  desired_capacity = 1
-  max_size         = 2
-  tg_arns          = module.lb.tg_arns
+  # min_size         = 1
+  # desired_capacity = 1
+  # max_size         = 2
+  # tg_arns          = module.lb.tg_arns
 }
 
 module "lb" {
