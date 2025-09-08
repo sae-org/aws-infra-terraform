@@ -14,10 +14,12 @@ variable "pub_ip" {
   default = null
 }
 
-variable "subnet_ids" {
-  type = list(string)
-}
+# variable "subnet_ids" {
+#   type = list(string)
+# }
 
+variable "subnet_id" {
+}
 variable "root_block_device" {
   type = list(object({
     volume_size = number

@@ -173,7 +173,7 @@ module "monitoring" {
 #   source          = "../../modules/github"
 #   git_name        = "CI-CD-Terraform-Dev-Repo-new"
 #   git_description = "My ci/cd pipeline for terraform"
-#   github_token    = "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"
+#   github_token    = 
 # }
 
 
