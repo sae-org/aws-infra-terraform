@@ -1,5 +1,6 @@
 resource "aws_cloudwatch_metric_alarm" "asg_cpu_high" {
-  alarm_name          = "${var.asg_name}-avg-cpu-high"
+  # alarm_name          = "${var.asg_name}-avg-cpu-high" 
+  alarm_name = "test"
   alarm_description   = "ASG average CPU is above threshold"
   comparison_operator = "GreaterThanThreshold"
   threshold           = 65
@@ -13,7 +14,7 @@ resource "aws_cloudwatch_metric_alarm" "asg_cpu_high" {
   namespace   = "AWS/EC2"
   metric_name = "CPUUtilization"
   statistic   = "Average"
-  dimensions = {
-    AutoScalingGroupName = var.asg_name
-  }
+  # dimensions = {
+  #   AutoScalingGroupName = var.asg_name
+  # }
 }

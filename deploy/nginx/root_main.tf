@@ -157,14 +157,14 @@ module "ecr" {
   ecr_name = "my-dev-ecr-repo-1"
 }
 
-module "monitoring" {
-  source       = "../../modules/monitoring"
-  sns_name     = "asg-cpu-alerts"
-  display_name = "ASG CPU Alerts"
-  alert_email  = "saeeda.devops@gmail.com"
-  asg_name     = module.ec2.asg_name
+# module "monitoring" {
+#   source       = "../../modules/monitoring"
+#   sns_name     = "asg-cpu-alerts"
+#   display_name = "ASG CPU Alerts"
+#   alert_email  = "saeeda.devops@gmail.com"
+#   # asg_name     = module.ec2.asg_name
 
-}
+# }
 
 # module "github" {
 #   source          = "../../modules/github"
