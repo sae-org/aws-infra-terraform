@@ -143,11 +143,11 @@ module "lb" {
   subnets         = module.vpc.pub_sub_id
   ports = [
     { port = 80, protocol = "HTTP" },
-    { port = 443, protocol = "HTTPS" }
+    # { port = 443, protocol = "HTTPS" }
   ]
-  cert_arn            = module.acm.certificate_arns
-  primary_cert_domain = "dev.saeeda.me"
-  extra_certs         = ["moh.saeeda.me", "tee.saeeda.me"]
+  # cert_arn            = module.acm.certificate_arns
+  # primary_cert_domain = "dev.saeeda.me"
+  # extra_certs         = ["moh.saeeda.me", "tee.saeeda.me"]
 }
 
 

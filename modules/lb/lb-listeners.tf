@@ -6,7 +6,7 @@ resource "aws_lb_listener" "alb_listeners" {
   load_balancer_arn = aws_lb.alb.arn
   port              = each.value.port
   protocol          = each.value.protocol
-  certificate_arn   = lower(each.value.protocol) == "https" ? var.cert_arn[var.primary_cert_domain] : null
+  # certificate_arn   = lower(each.value.protocol) == "https" ? var.cert_arn[var.primary_cert_domain] : null
 
   dynamic "default_action" {
     for_each = [each.value]
@@ -37,11 +37,11 @@ resource "aws_lb_listener" "alb_listeners" {
 
 
 # add additional listener acm certs for other domains
-resource "aws_lb_listener_certificate" "additional_certs" {
-  for_each        = toset(var.extra_certs)
-  listener_arn    = aws_lb_listener.alb_listeners["443"].arn
-  certificate_arn = var.cert_arn[each.value]
-}
+# resource "aws_lb_listener_certificate" "additional_certs" {
+#   for_each        = toset(var.extra_certs)
+#   listener_arn    = aws_lb_listener.alb_listeners["443"].arn
+#   certificate_arn = var.cert_arn[each.value]
+# }
 
 
 # # rules for port 80
