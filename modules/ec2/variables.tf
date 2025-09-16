@@ -46,7 +46,7 @@ variable "number" {
   default = 1
 }
 
-variable "tg_arns" {}
+# variable "tg_arns" {}
 
 variable "min_size" {
   type = number

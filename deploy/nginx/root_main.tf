@@ -127,9 +127,10 @@ module "ec2" {
   desired_capacity = 2
   min_size         = 1
   max_size         = 3
-  # tg_arns          = module.lb.tg_arns
 }
 
+  # tg_arns          = module.lb.tg_arns
+  
 # module "lb" {
 #   source          = "../../modules/lb"
 #   security_groups = [module.ec2.sg_alb_id]
