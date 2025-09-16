@@ -21,44 +21,44 @@ provider "aws" {
   # profile = "dev"
 }
 
-module "iam" {
-  source        = "../../modules/iam"
-  iam_role_name = "ec2-role"
-  role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Sid    = ""
-        Principal = {
-          Service = "ec2.amazonaws.com"
-        }
-      }
-    ]
-  })
-  ssm_profile_name = "SSMInstanceProfileDevNew2"
-  ec2_policy_name  = "ec2_policy"
-  ec2_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action   = ["ec2:RunInstances"]
-        Effect   = "Allow"
-        Resource = "*"
-      },
-      {
-        Sid      = "Statement1"
-        Action   = ["ecr:*"]
-        Effect   = "Allow"
-        Resource = "*"
-      }
-    ]
-  })
-  ssm_policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-  cw_policy_arn  = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+# module "iam" {
+#   source        = "../../modules/iam"
+#   iam_role_name = "ec2-role"
+#   role_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Action = "sts:AssumeRole"
+#         Effect = "Allow"
+#         Sid    = ""
+#         Principal = {
+#           Service = "ec2.amazonaws.com"
+#         }
+#       }
+#     ]
+#   })
+#   ssm_profile_name = "SSMInstanceProfileDevNew2"
+#   ec2_policy_name  = "ec2_policy"
+#   ec2_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Action   = ["ec2:RunInstances"]
+#         Effect   = "Allow"
+#         Resource = "*"
+#       },
+#       {
+#         Sid      = "Statement1"
+#         Action   = ["ecr:*"]
+#         Effect   = "Allow"
+#         Resource = "*"
+#       }
+#     ]
+#   })
+#   ssm_policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+#   cw_policy_arn  = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 
-}
+# }
 
 # module "acm" {
 #   source      = "../../modules/acm"
