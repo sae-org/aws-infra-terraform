@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "web_asg" {
 
 
 
-# If you attach to an ALB/NLB, pass its TGs here:
+  # If you attach to an ALB/NLB, pass its TGs here:
   target_group_arns         = var.tg_arns
   health_check_type         = "ELB"
   health_check_grace_period = 300
