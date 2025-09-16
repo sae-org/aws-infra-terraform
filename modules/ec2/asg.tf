@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "web_asg" {
-  name                = "${var.ec2_name}-asg"
+  name                = "my-app-asg"
   min_size            = var.min_size
   desired_capacity    = var.desired_capacity
   max_size            = var.max_size
@@ -21,7 +21,7 @@ resource "aws_autoscaling_group" "web_asg" {
 
   tag {
     key                 = "Name"
-    value               = var.ec2_name
+    value               = "my-app-asg"
     propagate_at_launch = true
   }
 

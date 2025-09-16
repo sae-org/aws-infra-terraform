@@ -31,7 +31,6 @@ variable "root_block_device" {
 
 variable "user_data" {
   type    = string
-  default = ""
 }
 
 variable "user_data_replace" {
