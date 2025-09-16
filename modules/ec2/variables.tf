@@ -14,12 +14,12 @@ variable "pub_ip" {
   default = null
 }
 
-# variable "subnet_ids" {
-#   type = list(string)
-# }
-
-variable "subnet_id" {
+variable "subnet_ids" {
+  type = list(string)
 }
+
+# variable "subnet_id" {
+# }
 variable "root_block_device" {
   type = list(object({
     volume_size = number
@@ -46,19 +46,19 @@ variable "number" {
   default = 1
 }
 
-# variable "tg_arns" {}
+variable "tg_arns" {}
 
-# variable "min_size" {
-#   type = number
-# }
+variable "min_size" {
+  type = number
+}
 
-# variable "max_size" {
-#   type = number
-# }
+variable "max_size" {
+  type = number
+}
 
-# variable "desired_capacity" {
-#   type = number
-# }
+variable "desired_capacity" {
+  type = number
+}
 
 variable "public_key" {
   sensitive = true
