@@ -5,10 +5,6 @@ resource "aws_autoscaling_group" "web_asg" {
   max_size            = var.max_size
   vpc_zone_identifier = var.subnet_ids # or use var.subnet_ids (list) across AZs
 
-  # If you attach to an ALB/NLB, pass its TGs here:
-  # target_group_arns         = var.tg_arns
-  # health_check_type         = "ELB"
-  # health_check_grace_period = 300
 
   launch_template {
     id      = aws_launch_template.web_lt.id
@@ -46,3 +42,10 @@ resource "aws_autoscaling_policy" "cpu_target" {
     target_value = 50 # scale to keep average CPU ~50%
   }
 }
+
+
+
+  # If you attach to an ALB/NLB, pass its TGs here:
+  # target_group_arns         = var.tg_arns
+  # health_check_type         = "ELB"
+  # health_check_grace_period = 300

@@ -21,44 +21,44 @@ provider "aws" {
   # profile = "dev"
 }
 
-# module "iam" {
-#   source        = "../../modules/iam"
-#   iam_role_name = "ec2-role"
-#   role_policy = jsonencode({
-#     Version = "2012-10-17"
-#     Statement = [
-#       {
-#         Action = "sts:AssumeRole"
-#         Effect = "Allow"
-#         Sid    = ""
-#         Principal = {
-#           Service = "ec2.amazonaws.com"
-#         }
-#       }
-#     ]
-#   })
-#   ssm_profile_name = "SSMInstanceProfileDevNew2"
-#   ec2_policy_name  = "ec2_policy"
-#   ec2_policy = jsonencode({
-#     Version = "2012-10-17"
-#     Statement = [
-#       {
-#         Action   = ["ec2:RunInstances"]
-#         Effect   = "Allow"
-#         Resource = "*"
-#       },
-#       {
-#         Sid      = "Statement1"
-#         Action   = ["ecr:*"]
-#         Effect   = "Allow"
-#         Resource = "*"
-#       }
-#     ]
-#   })
-#   ssm_policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-#   cw_policy_arn  = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+module "iam" {
+  source        = "../../modules/iam"
+  iam_role_name = "ec2-role"
+  role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      }
+    ]
+  })
+  ssm_profile_name = "SSMInstanceProfileDevNew2"
+  ec2_policy_name  = "ec2_policy"
+  ec2_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action   = ["ec2:RunInstances"]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+      {
+        Sid      = "Statement1"
+        Action   = ["ecr:*"]
+        Effect   = "Allow"
+        Resource = "*"
+      }
+    ]
+  })
+  ssm_policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  cw_policy_arn  = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 
-# }
+}
 
 # module "acm" {
 #   source      = "../../modules/acm"
@@ -127,7 +127,7 @@ module "ec2" {
   desired_capacity = 2
   min_size         = 1
   max_size         = 3
-  tg_arns          = module.lb.tg_arns
+  # tg_arns          = module.lb.tg_arns
 }
 
 # module "lb" {
@@ -148,12 +148,12 @@ module "ec2" {
 # }
 
 
-# module "vpc" {
-#   source     = "../../modules/vpc"
-#   cidr_block = "10.0.0.0/16"
-#   name       = "my-dev-vpc"
-#   vpc_az     = ["us-east-1a", "us-east-1b"]
-# }
+module "vpc" {
+  source     = "../../modules/vpc"
+  cidr_block = "10.0.0.0/16"
+  name       = "my-dev-vpc"
+  vpc_az     = ["us-east-1a", "us-east-1b"]
+}
 
 # module "ecr" {
 #   source   = "../../modules/ecr"
