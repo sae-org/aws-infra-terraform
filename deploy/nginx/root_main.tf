@@ -115,18 +115,18 @@ provider "aws" {
 
 
 module "ec2" {
-  source          = "../../modules/ec2"
-  vpc_id          = module.vpc.vpc_id
-  ins_type        = "t2.micro"
-  ami             = "ami-020cba7c55df1f615"
-  iam_ins_profile = module.iam.ssm_profile
-  pub_ip          = true
+  source           = "../../modules/ec2"
+  vpc_id           = module.vpc.vpc_id
+  ins_type         = "t2.micro"
+  ami              = "ami-020cba7c55df1f615"
+  iam_ins_profile  = module.iam.ssm_profile
+  pub_ip           = true
   subnet_ids       = module.vpc.pub_sub_id
-  ec2_name        = "my-dev-ec2"
-  public_key      = var.public_key
+  ec2_name         = "my-dev-ec2"
+  public_key       = var.public_key
   desired_capacity = 2
-  min_size = 1
-  max_size = 3
+  min_size         = 1
+  max_size         = 3
   tg_arns          = module.lb.tg_arns
 }
 
