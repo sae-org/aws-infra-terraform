@@ -35,9 +35,9 @@ resource "aws_launch_template" "web_lt" {
   instance_type = var.ins_type
   key_name      = aws_key_pair.newkey.key_name
 
-  # iam_instance_profile {
-  #   name = var.iam_ins_profile
-  # }
+  iam_instance_profile {
+    name = var.iam_ins_profile
+  }
 
   # Option A (simple): rely on subnet's MapPublicIpOnLaunch for public IPs
   # vpc_security_group_ids = [module.sg_ec2.sg_id]
