@@ -59,6 +59,6 @@ variable "desired_capacity" {
   type = number
 }
 
-variable "public_key" {
-  sensitive = true
-}
+# variable "public_key" {
+#   sensitive = true
+# }
