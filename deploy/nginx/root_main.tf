@@ -37,7 +37,7 @@ module "iam" {
       }
     ]
   })
-  ssm_profile_name = "SSMInstanceProfileDevNew4"
+  ssm_profile_name = "SSMInstanceProfileDevNew5"
   ec2_policy_name  = "ec2_policy"
   ec2_policy = jsonencode({
     Version = "2012-10-17"
@@ -60,58 +60,58 @@ module "iam" {
 
 }
 
-module "acm" {
-  source      = "../../modules/acm"
-  acm_domains = ["dev.saeeda.me", "moh.saeeda.me", "tee.saeeda.me"]
-}
+# module "acm" {
+#   source      = "../../modules/acm"
+#   acm_domains = ["dev.saeeda.me", "moh.saeeda.me", "tee.saeeda.me"]
+# }
 
 
-module "r53" {
-  source        = "../../modules/r53"
-  domain_name   = "saeeda.me"
-  create_domain = true
-  r53_domains = merge(
-    {
-      "alb.dev.saeeda.me" = [
-        {
-          name  = "dev.saeeda.me."
-          type  = "A"
-          value = null
-          alias = {
-            name                   = module.lb.lb_dns
-            zone_id                = module.lb.lb_zone
-            evaluate_target_health = false
-          }
-        }
-      ],
-      "alb.moh.saeeda.me" = [
-        {
-          name  = "moh.saeeda.me."
-          type  = "A"
-          value = null
-          alias = {
-            name                   = module.lb.lb_dns
-            zone_id                = module.lb.lb_zone
-            evaluate_target_health = false
-          }
-        }
-      ],
-      "alb.tee.saeeda.me" = [
-        {
-          name  = "tee.saeeda.me."
-          type  = "A"
-          value = null
-          alias = {
-            name                   = module.lb.lb_dns
-            zone_id                = module.lb.lb_zone
-            evaluate_target_health = false
-          }
-        }
-      ]
-    },
-    module.acm.domain_records # <- this is a map, merged in
-  )
-}
+# module "r53" {
+#   source        = "../../modules/r53"
+#   domain_name   = "saeeda.me"
+#   create_domain = true
+#   r53_domains = merge(
+#     {
+#       "alb.dev.saeeda.me" = [
+#         {
+#           name  = "dev.saeeda.me."
+#           type  = "A"
+#           value = null
+#           alias = {
+#             name                   = module.lb.lb_dns
+#             zone_id                = module.lb.lb_zone
+#             evaluate_target_health = false
+#           }
+#         }
+#       ],
+#       "alb.moh.saeeda.me" = [
+#         {
+#           name  = "moh.saeeda.me."
+#           type  = "A"
+#           value = null
+#           alias = {
+#             name                   = module.lb.lb_dns
+#             zone_id                = module.lb.lb_zone
+#             evaluate_target_health = false
+#           }
+#         }
+#       ],
+#       "alb.tee.saeeda.me" = [
+#         {
+#           name  = "tee.saeeda.me."
+#           type  = "A"
+#           value = null
+#           alias = {
+#             name                   = module.lb.lb_dns
+#             zone_id                = module.lb.lb_zone
+#             evaluate_target_health = false
+#           }
+#         }
+#       ]
+#     },
+#     module.acm.domain_records # <- this is a map, merged in
+#   )
+# }
 
 
 module "ec2" {
