@@ -37,7 +37,7 @@ module "iam" {
       }
     ]
   })
-  ssm_profile_name = "SSMInstanceProfileDevNew6"
+  ssm_profile_name = "SSMInstanceProfileDevNew7"
   ec2_policy_name  = "ec2_policy"
   ec2_policy = jsonencode({
     Version = "2012-10-17"
