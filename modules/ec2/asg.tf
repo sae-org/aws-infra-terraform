@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "web_asg" {
   }
 
   tag {
-    key                 = "aws:autoscaling:groupName"
+    key                 = "Name"
     value               = "my-app-asg"
     propagate_at_launch = true
   }
