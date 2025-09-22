@@ -33,22 +33,15 @@ resource "aws_launch_template" "web_lt" {
   name_prefix   = "${var.ec2_name}-lt"
   image_id      = var.ami
   instance_type = var.ins_type
-  key_name      = "ci-ssh"
+  key_name      = aws_key_pair.newkey.key_name
 
   iam_instance_profile {
     name = var.iam_ins_profile
   }
-
-  # Option A (simple): rely on subnet's MapPublicIpOnLaunch for public IPs
-  # vpc_security_group_ids = [module.sg_ec2.sg_id]
-
-  # If you MUST force a public IP regardless of subnet setting, use Option B instead of the line above:
   network_interfaces {
     associate_public_ip_address = var.pub_ip
     security_groups             = [module.sg_ec2.sg_id]
   }
-
-  # Root volume (adjust device_name if your AMI uses a different one)
   dynamic "block_device_mappings" {
     for_each = var.root_block_device
     content {

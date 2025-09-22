@@ -60,58 +60,58 @@ module "iam" {
 
 }
 
-# module "acm" {
-#   source      = "../../modules/acm"
-#   acm_domains = ["dev.saeeda.me", "moh.saeeda.me", "tee.saeeda.me"]
-# }
+module "acm" {
+  source      = "../../modules/acm"
+  acm_domains = ["dev.saeeda.me", "moh.saeeda.me", "tee.saeeda.me"]
+}
 
 
-# module "r53" {
-#   source        = "../../modules/r53"
-#   domain_name   = "saeeda.me"
-#   create_domain = true
-#   r53_domains = merge(
-#     {
-#       "alb.dev.saeeda.me" = [
-#         {
-#           name  = "dev.saeeda.me."
-#           type  = "A"
-#           value = null
-#           alias = {
-#             name                   = module.lb.lb_dns
-#             zone_id                = module.lb.lb_zone
-#             evaluate_target_health = false
-#           }
-#         }
-#       ],
-#       "alb.moh.saeeda.me" = [
-#         {
-#           name  = "moh.saeeda.me."
-#           type  = "A"
-#           value = null
-#           alias = {
-#             name                   = module.lb.lb_dns
-#             zone_id                = module.lb.lb_zone
-#             evaluate_target_health = false
-#           }
-#         }
-#       ],
-#       "alb.tee.saeeda.me" = [
-#         {
-#           name  = "tee.saeeda.me."
-#           type  = "A"
-#           value = null
-#           alias = {
-#             name                   = module.lb.lb_dns
-#             zone_id                = module.lb.lb_zone
-#             evaluate_target_health = false
-#           }
-#         }
-#       ]
-#     },
-#     module.acm.domain_records # <- this is a map, merged in
-#   )
-# }
+module "r53" {
+  source        = "../../modules/r53"
+  domain_name   = "saeeda.me"
+  create_domain = true
+  r53_domains = merge(
+    {
+      "alb.dev.saeeda.me" = [
+        {
+          name  = "dev.saeeda.me."
+          type  = "A"
+          value = null
+          alias = {
+            name                   = module.lb.lb_dns
+            zone_id                = module.lb.lb_zone
+            evaluate_target_health = false
+          }
+        }
+      ],
+      "alb.moh.saeeda.me" = [
+        {
+          name  = "moh.saeeda.me."
+          type  = "A"
+          value = null
+          alias = {
+            name                   = module.lb.lb_dns
+            zone_id                = module.lb.lb_zone
+            evaluate_target_health = false
+          }
+        }
+      ],
+      "alb.tee.saeeda.me" = [
+        {
+          name  = "tee.saeeda.me."
+          type  = "A"
+          value = null
+          alias = {
+            name                   = module.lb.lb_dns
+            zone_id                = module.lb.lb_zone
+            evaluate_target_health = false
+          }
+        }
+      ]
+    },
+    module.acm.domain_records # <- this is a map, merged in
+  )
+}
 
 
 module "ec2" {
@@ -143,11 +143,11 @@ module "lb" {
   subnets         = module.vpc.pub_sub_id
   ports = [
     { port = 80, protocol = "HTTP" },
-    # { port = 443, protocol = "HTTPS" }
+    { port = 443, protocol = "HTTPS" }
   ]
-  # cert_arn            = module.acm.certificate_arns
-  # primary_cert_domain = "dev.saeeda.me"
-  # extra_certs         = ["moh.saeeda.me", "tee.saeeda.me"]
+  cert_arn            = module.acm.certificate_arns
+  primary_cert_domain = "dev.saeeda.me"
+  extra_certs         = ["moh.saeeda.me", "tee.saeeda.me"]
 }
 
 
@@ -158,10 +158,10 @@ module "vpc" {
   vpc_az     = ["us-east-1a", "us-east-1b"]
 }
 
-# module "ecr" {
-#   source   = "../../modules/ecr"
-#   ecr_name = "my-dev-ecr-repo-1"
-# }
+module "ecr" {
+  source   = "../../modules/ecr"
+  ecr_name = "my-dev-ecr-repo-1"
+}
 
 module "monitoring" {
   source       = "../../modules/monitoring"

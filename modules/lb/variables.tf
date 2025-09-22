@@ -53,18 +53,18 @@ variable "ports" {
   ]
 }
 
-# variable "cert_arn" {}
+variable "cert_arn" {}
 
-# variable "primary_cert_domain" {
-#   type = string
-# }
+variable "primary_cert_domain" {
+  type = string
+}
 
 variable "http_status_code" {
   type    = string
   default = "HTTP_301"
 }
 
-# variable "extra_certs" {
-#   type    = list(string)
-#   default = []
-# }
+variable "extra_certs" {
+  type    = list(string)
+  default = []
+}
