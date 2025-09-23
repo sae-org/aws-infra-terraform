@@ -2,7 +2,7 @@ variable "iam_role_name" {}
 
 variable "role_policy" {}
 
-variable "ssm_profile_name" {}
+variable "ec2_profile_name" {}
 
 variable "ec2_policy_name" {}
 

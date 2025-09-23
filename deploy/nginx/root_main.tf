@@ -37,7 +37,7 @@ module "iam" {
       }
     ]
   })
-  ssm_profile_name = "SSMInstanceProfileDevNew7"
+  ec2_profile_name = "EC2InstanceProfile"
   ec2_policy_name  = "ec2_policy"
   ec2_policy = jsonencode({
     Version = "2012-10-17"
@@ -119,19 +119,16 @@ module "ec2" {
   vpc_id           = module.vpc.vpc_id
   ins_type         = "t2.micro"
   ami              = "ami-020cba7c55df1f615"
-  iam_ins_profile  = module.iam.ssm_profile
+  iam_ins_profile  = module.iam.ec2_profile
   pub_ip           = true
   subnet_ids       = module.vpc.pub_sub_id
   ec2_name         = "my-dev-ec2"
-  public_key       = var.public_key
   desired_capacity = 2
   min_size         = 1
   max_size         = 3
   user_data        = file("${path.root}/user_data.sh")
   tg_arns          = module.lb.tg_arns
 }
-
-# tg_arns          = module.lb.tg_arns
 
 module "lb" {
   source          = "../../modules/lb"
