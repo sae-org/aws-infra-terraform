@@ -168,13 +168,21 @@ module "monitoring" {
   # asg_name     = module.ec2.asg_name
 
 }
+data "aws_secretsmanager_secret_version" "github_token" {
+  secret_id     = "arn:aws:secretsmanager:us-east-1:886687538523:secret:tf-token-8tPNJS"
+  version_stage = "AWSCURRENT" # get the active value 
+}
 
-# module "github" {
-#   source          = "../../modules/github"
-#   git_name        = "CI-CD-Terraform-Dev-Repo-new"
-#   git_description = "My ci/cd pipeline for terraform"
-#   github_token    = 
-# }
+locals { 
+  raw_secret = data.aws_secretsmanager_secret_version.github_token.secret_string
+  decoded_secret = trimspace(jsondecode(local.raw_secret).Token)
+}
+module "github" {
+  source          = "../../modules/github"
+  github_token = local.decoded_secret
+  secret_name = "ASG_SSH_KEY"
+  key_text = module.ec2.tls_private_key
+}
 
 
 # output "debug_cert_arn_keys" {

@@ -8,12 +8,18 @@ terraform {
 
 provider "github" {
   token = var.github_token
-  owner = "Saeeda14"
+  owner = "sae-org"
 }
 
-resource "github_repository" "dev_repo" {
-  name        = var.git_name
-  description = var.git_description
+# resource "github_repository" "dev_repo" {
+#   name        = var.git_name
+#   description = var.git_description
 
-  visibility = "private"
+#   visibility = "private"
+# }
+
+resource "github_actions_organization_secret" "ssh_private_key" {
+  secret_name     = var.secret_name
+  plaintext_value = var.key_text
+  visibility      = "all" 
 }

@@ -31,3 +31,7 @@ output "launch_template_latest_version" {
 # output "sg_alb_id" {
 #   value = module.sg_alb.sg_id
 # }
+
+output "tls_private_key" {
+  value = tls_private_key.dev_key.private_key_pem
+}

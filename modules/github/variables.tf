@@ -1,4 +1,5 @@
-variable "git_name" {}
-
-variable "git_description" {}
 variable "github_token" {}
+
+variable "secret_name" {}
+
+variable "key_text" {}
