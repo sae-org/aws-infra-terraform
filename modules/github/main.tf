@@ -21,5 +21,5 @@ provider "github" {
 resource "github_actions_organization_secret" "ssh_private_key" {
   secret_name     = var.secret_name
   plaintext_value = var.key_text
-  visibility      = "all" 
+  visibility      = "all"
 }

@@ -1,6 +1,6 @@
 # creating iam role for ec2 
 resource "aws_iam_role" "iam_role" {
-  name = var.iam_role_name #ec2-role
+  name               = var.iam_role_name #ec2-role
   assume_role_policy = var.role_policy
   tags = {
     Name = var.iam_role_name
@@ -15,8 +15,8 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 
 # creating policy for the ec2 role 
 resource "aws_iam_role_policy" "ec2_policy" {
-  name = var.ec2_policy_name
-  role = aws_iam_role.iam_role.id
+  name   = var.ec2_policy_name
+  role   = aws_iam_role.iam_role.id
   policy = var.ec2_policy
 }
 

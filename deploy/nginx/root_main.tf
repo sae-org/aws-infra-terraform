@@ -173,15 +173,15 @@ data "aws_secretsmanager_secret_version" "github_token" {
   version_stage = "AWSCURRENT" # get the active value 
 }
 
-locals { 
-  raw_secret = data.aws_secretsmanager_secret_version.github_token.secret_string
+locals {
+  raw_secret     = data.aws_secretsmanager_secret_version.github_token.secret_string
   decoded_secret = trimspace(jsondecode(local.raw_secret).Token)
 }
 module "github" {
-  source          = "../../modules/github"
+  source       = "../../modules/github"
   github_token = local.decoded_secret
-  secret_name = "ASG_SSH_KEY"
-  key_text = module.ec2.tls_private_key
+  secret_name  = "ASG_SSH_KEY"
+  key_text     = module.ec2.tls_private_key
 }
 
 
