@@ -16,11 +16,12 @@ resource "aws_autoscaling_group" "web_asg" {
     version = "$Latest"
   }
 
-  # Replace instances when the LT changes (similar spirit to user_data_replace_on_change)
+  # Replace instances when the LT changes (similar to user_data_replace_on_change)
   instance_refresh {
     strategy = "Rolling"
     preferences {
-      min_healthy_percentage = 90
+      min_healthy_percentage = 100
+      instance_warmup        = 300
     }
   }
 
