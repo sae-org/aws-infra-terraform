@@ -124,7 +124,7 @@ module "ec2" {
   subnet_ids       = module.vpc.pub_sub_id
   ec2_name         = "my-dev-ec2"
   desired_capacity = 2
-  min_size         = 1
+  min_size         = 2
   max_size         = 3
   user_data        = file("${path.root}/user_data.sh")
   tg_arns          = module.lb.tg_arns
