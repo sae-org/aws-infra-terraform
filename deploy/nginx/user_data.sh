@@ -24,7 +24,7 @@ REPO="my-dev-ecr-repo-1"
 CONTAINER_NAME="myapp"
 HOST_PORT=80
 CONTAINER_PORT=80
-TAG="${IMAGE_TAG:-dev}"      
+TAG="dev"      
 
 # It calls the EC2 Metadata Service to get the instance’s Availability Zone (like us-east-1a) and saves it in AZ.
 AZ="$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone || true)"
