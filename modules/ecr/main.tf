@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "ecr_repo" {
-  name                 = var.ecr_name
+  name                 = "${var.proj_prefix}-ecr-repo"
   image_tag_mutability = "MUTABLE" # This controls whether Docker image tags in your ECR repository can be overwritten after an image has already been pushed. # MUTABLE = You can reuse or overwrite tags. # IMMUTABLE = Once an image is pushed with a tag, you cannot push another image with the same tag.
 
   image_scanning_configuration {

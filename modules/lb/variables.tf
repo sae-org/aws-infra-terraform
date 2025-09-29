@@ -1,4 +1,4 @@
-variable "name" {
+variable "proj_prefix" {
   type    = string
   default = ""
 }
@@ -64,7 +64,3 @@ variable "http_status_code" {
   default = "HTTP_301"
 }
 
-# variable "extra_certs" {
-#   type    = list(string)
-#   default = []
-# }

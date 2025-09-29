@@ -2,7 +2,7 @@ variable "cidr_block" {
   type = string
 }
 
-variable "name" {}
+variable "proj_prefix" {}
 
 variable "vpc_az" {
   type = list(string)

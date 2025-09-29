@@ -12,7 +12,7 @@ provider "github" {
 }
 
 # resource "github_repository" "dev_repo" {
-#   name        = var.git_name
+#   name        = "${var.proj_prefix}-"
 #   description = var.git_description
 
 #   visibility = "private"

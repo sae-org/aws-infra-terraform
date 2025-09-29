@@ -6,6 +6,8 @@
 
 # ------------------------------------------------
 
+variable "proj_prefix" {}
+
 variable "ins_type" {}
 
 variable "vpc_id" {}
@@ -37,7 +39,6 @@ variable "user_data_replace" {
   default = null
 }
 
-variable "ec2_name" {}
 variable "number" {
   type    = number
   default = 1

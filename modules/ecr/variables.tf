@@ -1,2 +1,2 @@
-variable "ecr_name" {}
+variable "proj_prefix" {}
 

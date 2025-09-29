@@ -21,8 +21,8 @@ provider "aws" {
 
 module "iam" {
   source        = "../../modules/iam"
-  iam_role_name = "ec2-role"
-  role_policy = jsonencode({
+  proj_prefix = "my-website"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -35,9 +35,7 @@ module "iam" {
       }
     ]
   })
-  ec2_profile_name = "EC2InstanceProfile"
-  ec2_policy_name  = "ec2_policy"
-  ec2_policy = jsonencode({
+  role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -53,9 +51,8 @@ module "iam" {
       }
     ]
   })
-  ssm_policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-  cw_policy_arn  = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
-
+  policy_attachment_1 = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  policy_attachment_2 = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 }
 
 module "acm" {
@@ -90,13 +87,13 @@ module "r53" {
 
 module "ec2" {
   source           = "../../modules/ec2"
+  proj_prefix = "my-website"
   vpc_id           = module.vpc.vpc_id
   ins_type         = "t2.micro"
   ami              = "ami-020cba7c55df1f615"
   iam_ins_profile  = module.iam.ec2_profile
   pub_ip           = true
   subnet_ids       = module.vpc.pub_sub_id
-  ec2_name         = "my-dev-ec2"
   desired_capacity = 2
   min_size         = 2
   max_size         = 3
@@ -106,9 +103,9 @@ module "ec2" {
 
 module "lb" {
   source          = "../../modules/lb"
+  proj_prefix = "my-website"
   security_groups = [module.ec2.sg_alb_id]
   vpc_id          = module.vpc.vpc_id
-  name            = "my-dev-alb-1"
   internal        = false
   lb_type         = "application"
   subnets         = module.vpc.pub_sub_id
@@ -123,23 +120,23 @@ module "lb" {
 
 module "vpc" {
   source     = "../../modules/vpc"
+  proj_prefix = "my-website"
   cidr_block = "10.0.0.0/16"
-  name       = "my-dev-vpc"
   vpc_az     = ["us-east-1a", "us-east-1b"]
 }
 
 module "ecr" {
   source   = "../../modules/ecr"
-  ecr_name = "my-dev-ecr-repo-1"
+  proj_prefix = "my-website"
+
 }
 
 module "monitoring" {
   source       = "../../modules/monitoring"
-  sns_name     = "asg-cpu-alerts"
+  proj_prefix = "my-website"
   display_name = "ASG CPU Alerts"
   alert_email  = "saeeda.devops@gmail.com"
   asg_name     = module.ec2.asg_name
-
 }
 data "aws_secretsmanager_secret_version" "github_token" {
   secret_id     = "arn:aws:secretsmanager:us-east-1:886687538523:secret:tf-token-8tPNJS"

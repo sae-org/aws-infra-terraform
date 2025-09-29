@@ -1,7 +1,7 @@
 module "sg_ec2" {
   source = "../security_groups"
   vpc_id = var.vpc_id
-  name   = "ec2-sg-2"
+  name   = "${var.proj_prefix}-ec2-sg"
 
   ingress_rules = [
     {
@@ -38,7 +38,7 @@ module "sg_ec2" {
 module "sg_alb" {
   source = "../security_groups"
   vpc_id = var.vpc_id
-  name   = "alb-sg-2"
+  name   = "${var.proj_prefix}-alb-sg"
 
   ingress_rules = [
     {

@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "web_asg" {
-  name                = "my-app-asg"
+  name                = "${var.proj_prefix}-asg"
   min_size            = var.min_size
   desired_capacity    = var.desired_capacity
   max_size            = var.max_size
@@ -27,7 +27,7 @@ resource "aws_autoscaling_group" "web_asg" {
 
   tag {
     key                 = "Name"
-    value               = "my-app-asg"
+    value               = "${var.proj_prefix}-asg"
     propagate_at_launch = true
   }
 

@@ -1,6 +1,6 @@
 # creating security group for alb (internet --> alb) and ec2 (alb --> ec2)
 resource "aws_security_group" "sg" {
-  name   = var.name
+  name   = "${var.proj_prefix}-sg"
   vpc_id = var.vpc_id
 
   dynamic "ingress" {
@@ -26,6 +26,6 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = var.name
+    Name = "${var.proj_prefix}-sg"
   }
 }

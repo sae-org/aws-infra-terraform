@@ -8,13 +8,13 @@ resource "aws_lb_target_group" "tg" {
   #   80  = (port = 80, protocol = "HTTP"),
   #   443 = (port = 443, protocol = "HTTPS")
   # }
-  name     = "${var.name}-tg-${each.key}-1"
+  name     = "${var.proj_prefix}-tg-${each.key}-1"
   port     = each.value.port
   protocol = each.value.protocol
   vpc_id   = var.vpc_id
 
   tags = {
-    Name = "${var.name}-tg-${each.key}-1"
+    Name = "${var.proj_prefix}-tg-${each.key}-1"
   }
 }
 

@@ -7,7 +7,7 @@ resource "aws_subnet" "pub_sub" {
   availability_zone = each.value
 
   tags = {
-    Name = "public_subnet_${var.name}"
+    Name = "${var.proj_prefix}-public-subnet"
   }
 }
 
@@ -20,6 +20,6 @@ resource "aws_subnet" "pri_sub" {
   availability_zone = each.value
 
   tags = {
-    Name = "private_subnet_${var.name}"
+    Name = "${var.proj_prefix}-private-subnet"
   }
 }

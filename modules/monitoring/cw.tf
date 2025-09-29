@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_metric_alarm" "asg_cpu_high" {
-  alarm_name          = "${var.asg_name}-avg-cpu-high" 
+  alarm_name          = "${var.proj_prefix}--asg-avg-cpu-high" 
   alarm_description   = "ASG average CPU is above threshold"
   comparison_operator = "GreaterThanThreshold"
   threshold           = 65

@@ -35,7 +35,7 @@
 # Creating Launch template 
 # -------------------------------------------------------------------------------
 resource "aws_launch_template" "web_lt" {
-  name_prefix   = "${var.ec2_name}-lt"
+  name_prefix   = "${var.proj_prefix}-lt"
   image_id      = var.ami
   instance_type = var.ins_type
   key_name      = aws_key_pair.dev_key_pub.key_name

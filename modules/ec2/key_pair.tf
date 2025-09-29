@@ -6,7 +6,7 @@ resource "tls_private_key" "dev_key" {
 
 # 2) Register the PUBLIC key with EC2
 resource "aws_key_pair" "dev_key_pub" {
-  key_name   = "dev_key"
+  key_name   = "${var.proj_prefix}-key"
   public_key = tls_private_key.dev_key.public_key_openssh
 }
 

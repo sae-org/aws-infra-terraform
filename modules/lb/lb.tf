@@ -1,6 +1,6 @@
 # Create a new load balancer
 resource "aws_lb" "alb" {
-  name               = var.name
+  name               = "${var.proj_prefix}-lb"
   internal           = var.internal
   load_balancer_type = var.lb_type
   security_groups    = var.security_groups
@@ -10,7 +10,7 @@ resource "aws_lb" "alb" {
   enable_deletion_protection = var.enable_deletion_protection
 
   tags = {
-    Name = var.name
+    Name = "${var.proj_prefix}-lb"
   }
 }
 

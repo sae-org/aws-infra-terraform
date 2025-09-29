@@ -1,13 +1,9 @@
-variable "iam_role_name" {}
+variable "proj_prefix" {}
+
+variable "assume_role_policy" {}
 
 variable "role_policy" {}
 
-variable "ec2_profile_name" {}
+variable "policy_attachment_1" {}
 
-variable "ec2_policy_name" {}
-
-variable "ec2_policy" {}
-
-variable "ssm_policy_arn" {}
-
-variable "cw_policy_arn" {}
+variable "policy_attachment_2" {}
