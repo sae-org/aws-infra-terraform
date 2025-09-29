@@ -6,7 +6,6 @@ terraform {
     key          = "terraform/nginx/terraform.tfstate"
     region       = "us-east-1"
     use_lockfile = true
-    # profile = "dev"
   }
   required_providers {
     aws = {
@@ -18,7 +17,6 @@ terraform {
 # configuring aws provider 
 provider "aws" {
   region = "us-east-1"
-  # profile = "dev"
 }
 
 module "iam" {
@@ -62,7 +60,7 @@ module "iam" {
 
 module "acm" {
   source      = "../../modules/acm"
-  acm_domains = ["dev.saeeda.me", "moh.saeeda.me", "tee.saeeda.me"]
+  acm_domains = ["saeeda.me"]
 }
 
 
@@ -72,9 +70,9 @@ module "r53" {
   create_domain = true
   r53_domains = merge(
     {
-      "alb.dev.saeeda.me" = [
+      "alb.saeeda.me" = [
         {
-          name  = "dev.saeeda.me."
+          name  = "saeeda.me."
           type  = "A"
           value = null
           alias = {
@@ -84,30 +82,6 @@ module "r53" {
           }
         }
       ],
-      "alb.moh.saeeda.me" = [
-        {
-          name  = "moh.saeeda.me."
-          type  = "A"
-          value = null
-          alias = {
-            name                   = module.lb.lb_dns
-            zone_id                = module.lb.lb_zone
-            evaluate_target_health = false
-          }
-        }
-      ],
-      "alb.tee.saeeda.me" = [
-        {
-          name  = "tee.saeeda.me."
-          type  = "A"
-          value = null
-          alias = {
-            name                   = module.lb.lb_dns
-            zone_id                = module.lb.lb_zone
-            evaluate_target_health = false
-          }
-        }
-      ]
     },
     module.acm.domain_records # <- this is a map, merged in
   )
@@ -143,8 +117,7 @@ module "lb" {
     { port = 443, protocol = "HTTPS" }
   ]
   cert_arn            = module.acm.certificate_arns
-  primary_cert_domain = "dev.saeeda.me"
-  extra_certs         = ["moh.saeeda.me", "tee.saeeda.me"]
+  primary_cert_domain = "saeeda.me"
 }
 
 
@@ -165,7 +138,7 @@ module "monitoring" {
   sns_name     = "asg-cpu-alerts"
   display_name = "ASG CPU Alerts"
   alert_email  = "saeeda.devops@gmail.com"
-  # asg_name     = module.ec2.asg_name
+  asg_name     = module.ec2.asg_name
 
 }
 data "aws_secretsmanager_secret_version" "github_token" {
@@ -184,8 +157,4 @@ module "github" {
   key_text     = module.ec2.tls_private_key
 }
 
-
-# output "debug_cert_arn_keys" {
-#   value = keys(module.acm.certificate_arns)
-# }
 

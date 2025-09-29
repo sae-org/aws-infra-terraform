@@ -64,7 +64,7 @@ variable "http_status_code" {
   default = "HTTP_301"
 }
 
-variable "extra_certs" {
-  type    = list(string)
-  default = []
-}
+# variable "extra_certs" {
+#   type    = list(string)
+#   default = []
+# }

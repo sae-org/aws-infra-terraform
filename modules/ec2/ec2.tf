@@ -1,5 +1,8 @@
 # creating an aws instance with its type, ubuntu ami, newly generated key-pair attached, security groups attached, user data script that runs on boot up that will install docker nginx & create dockerfile. also defining root volume for instance to be 10 gig and of type gp3 and also attach ec2 role instance profile 
 
+# -------------------------------------------------------------------------------
+# Creating single ec2  
+# -------------------------------------------------------------------------------
 
 # resource "aws_instance" "webserver" {
 #   count                       = var.number
@@ -28,7 +31,9 @@
 #   }
 # }
 
-
+# -------------------------------------------------------------------------------
+# Creating Launch template 
+# -------------------------------------------------------------------------------
 resource "aws_launch_template" "web_lt" {
   name_prefix   = "${var.ec2_name}-lt"
   image_id      = var.ami

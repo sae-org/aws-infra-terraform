@@ -37,57 +37,57 @@ resource "aws_lb_listener" "alb_listeners" {
 
 
 # add additional listener acm certs for other domains
-resource "aws_lb_listener_certificate" "additional_certs" {
-  for_each        = toset(var.extra_certs)
-  listener_arn    = aws_lb_listener.alb_listeners["443"].arn
-  certificate_arn = var.cert_arn[each.value]
-}
+# resource "aws_lb_listener_certificate" "additional_certs" {
+#   for_each        = toset(var.extra_certs)
+#   listener_arn    = aws_lb_listener.alb_listeners["443"].arn
+#   certificate_arn = var.cert_arn[each.value]
+# }
 
 
 # rules for port 80
-resource "aws_lb_listener_rule" "rule_http" {
-  for_each = {
-    for p, l in aws_lb_listener.alb_listeners : p => l
-    if l.port == 80
-  }
+# resource "aws_lb_listener_rule" "rule_http" {
+#   for_each = {
+#     for p, l in aws_lb_listener.alb_listeners : p => l
+#     if l.port == 80
+#   }
 
-  listener_arn = each.value.arn
-  priority     = 1
+#   listener_arn = each.value.arn
+#   priority     = 1
 
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.tg["80"].arn
-  }
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.tg["80"].arn
+#   }
 
-  condition {
-    path_pattern {
-      values = ["/.well-known/*"]
-    }
-  }
-}
+#   condition {
+#     path_pattern {
+#       values = ["/.well-known/*"]
+#     }
+#   }
+# }
 
 
-# rules for port 443
-resource "aws_lb_listener_rule" "rule_https" {
-  for_each = {
-    for p, l in aws_lb_listener.alb_listeners : p => l
-    if l.port == 443
-  }
+# # rules for port 443
+# resource "aws_lb_listener_rule" "rule_https" {
+#   for_each = {
+#     for p, l in aws_lb_listener.alb_listeners : p => l
+#     if l.port == 443
+#   }
 
-  listener_arn = each.value.arn
-  priority     = 100
+#   listener_arn = each.value.arn
+#   priority     = 100
 
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.tg["80"].arn
-  }
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.tg["80"].arn
+#   }
 
-  condition {
-    host_header {
-      values = ["moh.saeeda.me", "tee.saeeda.me"]
-    }
-  }
-}
+#   condition {
+#     host_header {
+#       values = ["moh.saeeda.me", "tee.saeeda.me"]
+#     }
+#   }
+# }
 
 
 
