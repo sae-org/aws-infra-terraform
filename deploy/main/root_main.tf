@@ -87,12 +87,12 @@ module "r53" {
 
 module "ec2" {
   source           = "../../modules/ec2"
-  proj_prefix = "my-website"
+  proj_prefix      = "my-website"
   vpc_id           = module.vpc.vpc_id
   ins_type         = "t2.micro"
   ami              = "ami-020cba7c55df1f615"
   iam_ins_profile  = module.iam.ec2_profile
-  pub_ip           = true
+  pub_ip           = false
   subnet_ids       = module.vpc.pub_sub_id
   desired_capacity = 2
   min_size         = 2
@@ -108,7 +108,7 @@ module "lb" {
   vpc_id          = module.vpc.vpc_id
   internal        = false
   lb_type         = "application"
-  subnets         = module.vpc.pub_sub_id
+  subnets         = module.vpc.pri_sub_id
   ports = [
     { port = 80, protocol = "HTTP" },
     { port = 443, protocol = "HTTPS" }
