@@ -1,6 +1,4 @@
-variable "proj_prefix" {
-  type = string
-}
+variable "proj_prefix" {}
 variable "ingress_rules" {
   type = list(object({
     from_port       = number
